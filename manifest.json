@@ -1,0 +1,23 @@
+{
+  "name": "KeyFinder",
+  "description": "a browser extension that searches the DOM for leaked keys🔑.",
+  "version":"1.0.0",
+  "manifest_version": 2,
+  "browser_action":{
+    "default_icon":"./css/icon.png",
+    "default_popup":"popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches":[
+        "<all_urls>"
+      ],
+      "js": ["./js/results.js","./js/jquery.js","./js/content.js"]
+    }
+  ],
+  "background": {
+    "scripts":["./js/background.js"]
+  }
+  ,
+  "permissions": ["activeTab","storage"]
+}
