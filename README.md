@@ -5,7 +5,7 @@
 
 <p align="center">
 <img src="https://img.shields.io/badge/Chrome-red.svg"/>
-<img src="https://img.shields.io/github/license/momenbasel/keyFinder.svg"/>
+<img src="https://img.shields.io/github/license/momenbasel/keyFinder"/>
 <img src="https://img.shields.io/github/downloads/momenbasel/keyFinder/total.svg"/>
 <img src="https://img.shields.io/badge/demo-youtube-blue.svg"/>
 </p>
