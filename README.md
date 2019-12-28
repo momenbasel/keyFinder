@@ -11,7 +11,7 @@
 </p>
 
 # What is keyFinder?
-keyFinder is chrome exstenion that searches the DOM for any embedd script link, as script tag may contain keys for specific API(such as Google maps API) and you can add keywords to search for it at any website you visit.
+keyFinder is chrome extension that searches the DOM for any embedded script link, as script tag may contain keys for specific API(such as Google maps API) and you can add keywords to search for it at any website you visit.
 
 
 
