@@ -12,7 +12,7 @@
       "matches":[
         "<all_urls>"
       ],
-      "js": ["./js/results.js","./js/jquery.js","./js/content.js"]
+      "js": ["./js/jquery.js","./js/results.js","./js/content.js"]
     }
   ],
   "background": {
