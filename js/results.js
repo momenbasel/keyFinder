@@ -66,6 +66,16 @@ $('.btn').click(function() {
   alert(`${selectedItem} removed`);
 })
 
+//deleteall
+$('.delall').click(function() {
+  for (var i = 0; i < localStorage.length; i++){
+    var key = localStorage.key(i);
+    localStorage.removeItem(key);
+}
+  location.reload();
+  alert(`Removed all Keys`);
+})
+
 //extract domain name from URL
 function extractHostname(url) {
     var hostname;
