@@ -294,9 +294,13 @@
     } catch {}
   }
 
+  const kfNonce = document.documentElement.getAttribute("data-kf-verify") || "";
+  document.documentElement.removeAttribute("data-kf-verify");
+
   window.addEventListener("__kf_finding__", (e) => {
     const data = e.detail;
     if (!data) return;
+    if (data.__kfNonce !== kfNonce) return;
 
     if (data.rawText) {
       scanText(data.rawText, data.sourceUrl || pageUrl, data.type);
@@ -326,6 +330,66 @@
   scanWebStorage();
   scanCookies();
   await scanExternalScripts();
+
+  // Observe DOM mutations for SPA support
+  const observer = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      for (const node of mutation.addedNodes) {
+        if (node.nodeType !== Node.ELEMENT_NODE) continue;
+        if (node.tagName === "SCRIPT") {
+          if (node.src) {
+            // New external script added
+            for (const kw of keywords) {
+              if (node.src.toLowerCase().includes(kw)) {
+                report({
+                  url: node.src, match: node.src, type: "script-src",
+                  patternName: `Script URL contains: ${kw}`,
+                  severity: "medium", confidence: "medium", provider: "URL Scan",
+                });
+              }
+            }
+          } else if (node.textContent) {
+            scanText(node.textContent, pageUrl, "inline-script");
+          }
+        }
+        // Scan any new hidden inputs
+        const hiddenInputs = node.matches && node.matches('input[type="hidden"]')
+          ? [node]
+          : (node.querySelectorAll ? Array.from(node.querySelectorAll('input[type="hidden"]')) : []);
+        for (const input of hiddenInputs) {
+          const name = (input.name || input.id || "").toLowerCase();
+          const value = input.value;
+          if (!value || value.length < 8) continue;
+          const sensitive = ["token", "csrf", "api_key", "apikey", "secret", "auth", "session", "nonce", "key", "access_token"];
+          if (sensitive.some((s) => name.includes(s)) || isHighEntropy(value)) {
+            report({
+              url: pageUrl, match: `${name}=${value.substring(0, 100)}`,
+              type: "hidden-input", patternName: "Hidden Form Field",
+              severity: isHighEntropy(value) ? "high" : "medium",
+              confidence: sensitive.some((s) => name.includes(s)) ? "high" : "medium",
+              provider: "DOM Scan",
+            });
+          }
+        }
+        // Scan data attributes on new elements
+        const elementsToCheck = node.querySelectorAll ? [node, ...node.querySelectorAll("*")] : [node];
+        for (const el of elementsToCheck) {
+          if (!el.attributes) continue;
+          for (const attr of el.attributes) {
+            if (!/^data-.*(?:key|token|secret|auth|api|credential|password)/i.test(attr.name)) continue;
+            if (!attr.value || attr.value.length < 8) continue;
+            report({
+              url: pageUrl, match: `${attr.name}="${attr.value.substring(0, 100)}"`,
+              type: "data-attribute", patternName: "Sensitive Data Attribute",
+              severity: "medium", confidence: isHighEntropy(attr.value) ? "high" : "medium",
+              provider: "DOM Scan",
+            });
+          }
+        }
+      }
+    }
+  });
+  observer.observe(document.body || document.documentElement, { childList: true, subtree: true });
 
   if (seen.size > 0) {
     console.log(`[KeyFinder] ${seen.size} potential secret(s) found on ${pageDomain}`);
