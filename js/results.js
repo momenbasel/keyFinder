@@ -173,8 +173,8 @@ function renderFindings() {
     delBtn.textContent = "Del";
     delBtn.title = "Remove finding";
     delBtn.addEventListener("click", async () => {
-      await chrome.runtime.sendMessage({ type: "removeFinding", url: f.url });
-      allFindings = allFindings.filter((x) => x !== f);
+      await chrome.runtime.sendMessage({ type: "removeFinding", findingId: f.id });
+      allFindings = allFindings.filter((x) => x.id !== f.id);
       renderStats();
       renderFindings();
     });
@@ -212,19 +212,26 @@ function exportJson() {
   downloadBlob(blob, `keyfinder-findings-${Date.now()}.json`);
 }
 
+function csvSafe(value) {
+  let str = String(value || "");
+  if (/^[=+\-@\t\r]/.test(str)) str = "'" + str;
+  str = str.replace(/"/g, '""');
+  return `"${str}"`;
+}
+
 function exportCsv() {
   const filtered = getFiltered();
   const headers = ["Severity", "Provider", "Pattern", "Match", "Type", "Domain", "URL", "Page URL", "Timestamp"];
   const rows = filtered.map((f) => [
-    f.severity || "",
-    f.provider || "",
-    f.patternName || "",
-    `"${(f.match || "").replace(/"/g, '""')}"`,
-    f.type || "",
-    f.domain || "",
-    f.url || "",
-    f.pageUrl || "",
-    f.timestamp ? new Date(f.timestamp).toISOString() : "",
+    csvSafe(f.severity),
+    csvSafe(f.provider),
+    csvSafe(f.patternName),
+    csvSafe(f.match),
+    csvSafe(f.type),
+    csvSafe(f.domain),
+    csvSafe(f.url),
+    csvSafe(f.pageUrl),
+    csvSafe(f.timestamp ? new Date(f.timestamp).toISOString() : ""),
   ]);
   const csv = [headers.join(","), ...rows.map((r) => r.join(","))].join("\n");
   const blob = new Blob([csv], { type: "text/csv" });

@@ -2,8 +2,11 @@
   "use strict";
 
   const EVENT_NAME = "__kf_finding__";
+  const nonce = document.documentElement.getAttribute("data-kf-nonce") || "";
+  document.documentElement.removeAttribute("data-kf-nonce");
 
   function emit(data) {
+    data.__kfNonce = nonce;
     window.dispatchEvent(new CustomEvent(EVENT_NAME, { detail: data }));
   }
 

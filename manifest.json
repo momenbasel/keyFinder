@@ -25,14 +25,22 @@
     },
     {
       "matches": ["<all_urls>"],
-      "js": ["js/interceptor.js"],
+      "js": ["js/interceptor-loader.js"],
       "run_at": "document_start",
-      "world": "MAIN",
       "all_frames": true
     }
   ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
   "background": {
     "service_worker": "js/background.js"
   },
+  "web_accessible_resources": [
+    {
+      "resources": ["js/interceptor.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
   "permissions": ["activeTab", "storage"]
 }
