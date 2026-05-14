@@ -3,6 +3,8 @@ let allFindings = [];
 document.addEventListener("DOMContentLoaded", init);
 
 async function init() {
+  const versionLabel = document.getElementById("versionLabel");
+  if (versionLabel) versionLabel.textContent = "v" + chrome.runtime.getManifest().version;
   const response = await chrome.runtime.sendMessage({ type: "getFindings" });
   allFindings = response.findings || [];
 

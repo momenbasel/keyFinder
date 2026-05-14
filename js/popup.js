@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", init);
 
 async function init() {
+  const versionLabel = document.getElementById("versionLabel");
+  if (versionLabel) versionLabel.textContent = "v" + chrome.runtime.getManifest().version;
   await renderKeywords();
   await renderStats();
   document.getElementById("keywordForm").addEventListener("submit", handleAddKeyword);
