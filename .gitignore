@@ -2,6 +2,7 @@
 *.crx
 *.pem
 *.zip
+dist/
 .idea/
 .vscode/
 *.swp
