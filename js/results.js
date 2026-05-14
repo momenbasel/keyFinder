@@ -3,6 +3,8 @@ let allFindings = [];
 document.addEventListener("DOMContentLoaded", init);
 
 async function init() {
+  const versionLabel = document.getElementById("versionLabel");
+  if (versionLabel) versionLabel.textContent = "v" + chrome.runtime.getManifest().version;
   const response = await chrome.runtime.sendMessage({ type: "getFindings" });
   allFindings = response.findings || [];
 
@@ -214,7 +216,7 @@ function exportJson() {
 
 function csvSafe(value) {
   let str = String(value || "");
-  if (/^[=+\-@\t\r]/.test(str)) str = "'" + str;
+  if (/^[=+\-@\t\r\n]/.test(str)) str = "'" + str;
   str = str.replace(/"/g, '""');
   return `"${str}"`;
 }

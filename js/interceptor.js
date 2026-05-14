@@ -39,23 +39,39 @@
     "__ENV__", "__CONFIG__", "ENV", "CONFIG",
   ];
 
-  for (const name of globalNames) {
-    try {
-      const val = window[name];
-      if (val === undefined || val === null) continue;
-      const str = typeof val === "object" ? JSON.stringify(val) : String(val);
-      if (str.length < 8 || str === "[object Object]") continue;
-      emit({
-        match: `window.${name}=${str.substring(0, 200)}`,
-        type: "window-global",
-        patternName: "Exposed Global Variable",
-        severity: "high",
-        confidence: typeof val !== "object" && isHighEntropy(str.substring(0, 60)) ? "high" : "medium",
-        provider: "JS Global Scan",
-        isObject: typeof val === "object",
-        rawText: typeof val === "object" ? str.substring(0, 5000) : null,
-      });
-    } catch {}
+  const scannedGlobals = new Set();
+  function scanGlobals() {
+    for (const name of globalNames) {
+      if (scannedGlobals.has(name)) continue;
+      try {
+        const val = window[name];
+        if (val === undefined || val === null) continue;
+        const str = typeof val === "object" ? JSON.stringify(val) : String(val);
+        if (str.length < 8 || str === "[object Object]") continue;
+        scannedGlobals.add(name);
+        emit({
+          match: `window.${name}=${str.substring(0, 200)}`,
+          type: "window-global",
+          patternName: "Exposed Global Variable",
+          severity: "high",
+          confidence: typeof val !== "object" && isHighEntropy(str.substring(0, 60)) ? "high" : "medium",
+          provider: "JS Global Scan",
+          isObject: typeof val === "object",
+          rawText: typeof val === "object" ? str.substring(0, 5000) : null,
+        });
+      } catch {}
+    }
+  }
+  // Run at document_start (likely empty), DOMContentLoaded, and load to catch
+  // globals set at any phase. Each name reports at most once via scannedGlobals.
+  scanGlobals();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", scanGlobals, { once: true });
+  }
+  if (document.readyState !== "complete") {
+    window.addEventListener("load", scanGlobals, { once: true });
+  } else {
+    scanGlobals();
   }
 
   const origXhrOpen = XMLHttpRequest.prototype.open;
