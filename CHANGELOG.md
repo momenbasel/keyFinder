@@ -2,7 +2,7 @@
 
 All notable changes to KeyFinder are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning follows [SemVer](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.1.1] - 2026-05-14
 
 ### Added
 - `SECURITY.md` with threat model, disclosure policy, and known limitations of the MAIN <-> ISOLATED nonce bridge
@@ -12,6 +12,8 @@ All notable changes to KeyFinder are documented here. Format follows [Keep a Cha
 ### Changed
 - CSV export sanitiser now also prefixes cells starting with LF (`\n`), not just `=`, `+`, `-`, `@`, tab, CR
 - Popup and results page version label is now read from the manifest at runtime instead of being hardcoded
+
+### Fixed
 - Window-global scan in `js/interceptor.js` now runs at `document_start`, `DOMContentLoaded`, and `load`, with per-name dedupe. The previous implementation only scanned at `document_start` when page globals had not yet been assigned, making the entire pass dead code on most real pages
 
 ## [2.1.0] - 2026-04-14
