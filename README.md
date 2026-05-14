@@ -60,10 +60,13 @@ Additionally, **Shannon entropy analysis** is applied to detect random high-entr
 - **Zero dependencies** - Pure vanilla JavaScript, no jQuery, no external libraries
 - **Manifest V3** - Built for modern Chrome and Firefox with service worker architecture
 - **Passive scanning** - Runs automatically on every page load
-- **Custom keywords** - Add your own search terms to scan for
+- **SPA-aware** - MutationObserver re-scans dynamically injected DOM
+- **Per-tab alert badge** - Red-dot icon overlay when a tab has findings
+- **Custom keywords** - Add your own search terms to scan for (validated, 50 max)
 - **Dashboard** - Professional results page with filtering, sorting, and search
-- **Export** - Download findings as JSON or CSV
-- **Badge counter** - Shows finding count on the extension icon
+- **Export** - Download findings as JSON or CSV (with formula-injection sanitiser)
+- **Hardened bridge** - Per-page nonce on MAIN <-> ISOLATED CustomEvent channel
+- **Bounded storage** - 5000-finding cap with FIFO eviction; serialised writes across tabs
 - **Low footprint** - Minimal CPU and memory usage
 - **All frames** - Scans iframes and embedded content
 
@@ -117,8 +120,9 @@ keyFinder/
   js/
     background.js          # Service worker - storage and message handling
     patterns.js            # 80+ secret detection regex patterns
-    content.js             # Page scanner - DOM, scripts, network interception
-    interceptor.js         # XHR/Fetch hooking and window global scanning
+    content.js             # ISOLATED-world page scanner - DOM, scripts, network
+    interceptor-loader.js  # ISOLATED loader - sets nonce, injects MAIN-world interceptor
+    interceptor.js         # MAIN-world XHR/Fetch hooks + window global scanning
     popup.js               # Popup logic
     results.js             # Dashboard logic with filtering and export
   css/
@@ -131,6 +135,10 @@ keyFinder/
   scripts/
     build.sh               # Build Chrome and Firefox zip packages
 ```
+
+## Security
+
+See [SECURITY.md](SECURITY.md) for the threat model, disclosure policy, and known limitations. Release notes are in [CHANGELOG.md](CHANGELOG.md).
 
 ## Disclaimer
 
