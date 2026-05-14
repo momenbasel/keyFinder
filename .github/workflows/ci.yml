@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate manifest JSON
+        run: |
+          python3 -c "import json,sys; json.load(open('manifest.json'))"
+          python3 -c "import json,sys; json.load(open('manifest.firefox.json'))"
+
+      - name: Manifest versions must match
+        run: |
+          C=$(python3 -c "import json; print(json.load(open('manifest.json'))['version'])")
+          F=$(python3 -c "import json; print(json.load(open('manifest.firefox.json'))['version'])")
+          [ "$C" = "$F" ] || { echo "Chrome=$C Firefox=$F"; exit 1; }
+
+      - name: Build runs cleanly
+        run: bash scripts/build.sh
+
+      - name: Install web-ext
+        run: npm install -g web-ext
+
+      - name: web-ext lint (Firefox)
+        run: web-ext lint --source-dir dist/firefox --self-hosted

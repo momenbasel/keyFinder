@@ -12,6 +12,7 @@ SHARED_FILES=(
   js/background.js
   js/content.js
   js/interceptor.js
+  js/interceptor-loader.js
   js/patterns.js
   js/popup.js
   js/results.js

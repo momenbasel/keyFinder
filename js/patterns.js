@@ -76,7 +76,7 @@ const SECRET_PATTERNS = [
   { name: "Shopify Private App Token", re: /\bshppa_[a-fA-F0-9]{32}\b/g, severity: "critical", confidence: "high", provider: "Shopify" },
   { name: "Shopify Shared Secret", re: /\bshpss_[a-fA-F0-9]{32}\b/g, severity: "critical", confidence: "high", provider: "Shopify" },
 
-  { name: "Sentry DSN", re: /https:\/\/[0-9a-f]{32}@(?:o[0-9]+\.)?(?:sentry\.io|[a-z0-9.-]+)\/[0-9]+/g, severity: "medium", confidence: "high", provider: "Sentry" },
+  { name: "Sentry DSN", re: /https:\/\/[0-9a-f]{32}@(?:o[0-9]+\.)?(?:sentry\.io|[a-z0-9.-]+)\/[0-9]+/g, severity: "low", confidence: "high", provider: "Sentry" },
   { name: "Sentry Auth Token", re: /\bsntrys_[A-Za-z0-9_]{64,}\b/g, severity: "high", confidence: "high", provider: "Sentry" },
 
   { name: "New Relic API Key", re: /\bNRAK-[A-Z0-9]{27}\b/g, severity: "high", confidence: "high", provider: "New Relic" },
