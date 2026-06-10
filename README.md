@@ -144,6 +144,14 @@ See [SECURITY.md](SECURITY.md) for the threat model, disclosure policy, and know
 
 This tool is intended for **security research and authorized testing only**. Use it to identify leaked secrets on your own applications or during authorized penetration tests. You are responsible for your own actions.
 
+
+## Professional services
+
+keyFinder is built and maintained by [GreyCore Labs](https://greycorelabs.com), a US-incorporated offensive security firm. Want the same eye on your own product?
+
+- [Penetration testing](https://greycorelabs.com/#plans) - web, API, mobile, cloud. Fixed quote within 24 hours, redacted sample report on request.
+- [Free external attack-surface scan](https://greycorelabs.com/#free-scan) - one-page report in 48 hours, no strings attached.
+
 ## License
 
 MIT
