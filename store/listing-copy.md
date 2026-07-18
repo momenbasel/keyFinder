@@ -131,4 +131,4 @@ The extension scans visited pages locally for leaked secrets and stores findings
 - [x] Screenshots 1280×800 — `store/`
 - [x] Privacy policy — `PRIVACY.md` (host its raw GitHub URL in store dashboards that ask: `https://github.com/momenbasel/keyFinder/blob/master/PRIVACY.md`)
 - [x] Homepage URL — `https://github.com/momenbasel/keyFinder`
-- [ ] Promotional video (optional on both stores — see below)
+- [x] Promotional video — `store/store-demo.mp4` (1280×720, 30 fps, 12.3 s: title card → console pan → popup; upload to YouTube as unlisted and paste the link in both store dashboards)
