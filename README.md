@@ -67,8 +67,9 @@ Additionally, **Shannon entropy analysis** is applied to detect random high-entr
 - **SPA-aware** - MutationObserver re-scans dynamically injected DOM
 - **Per-tab alert badge** - Red-dot icon overlay when a tab has findings
 - **Custom keywords** - Add your own search terms to scan for (validated, 50 max)
-- **Dashboard** - Professional results page with filtering, sorting, and search
-- **Export** - Download findings as JSON or CSV (with formula-injection sanitiser)
+- **Ops-console dashboard** - Flat terminal UI: severity-sorted findings, click-to-filter severity tiles, latest-finding ticker, and live search (`/` focuses, `Esc` clears)
+- **One-click triage** - Click any match chip to copy the secret, relative timestamps with absolute on hover, per-finding delete
+- **Export** - Download filtered findings as JSON or CSV (with formula-injection sanitiser)
 - **Hardened bridge** - Per-page nonce on MAIN <-> ISOLATED CustomEvent channel
 - **Bounded storage** - 5000-finding cap with FIFO eviction; serialised writes across tabs
 - **Low footprint** - Minimal CPU and memory usage
@@ -104,7 +105,7 @@ git clone https://github.com/momenbasel/keyFinder.git
 2. **Browse** the web normally - KeyFinder scans every page in the background
 3. Click the **extension icon** to see stats and manage keywords
 4. Click **View Findings** to open the full results dashboard
-5. **Filter** by severity, provider, or type
+5. **Filter** by severity, provider, or type - or click a severity tile to filter instantly; press `/` to search
 6. **Export** findings as JSON or CSV for reporting
 
 ## Adding Custom Keywords
