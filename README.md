@@ -22,7 +22,7 @@
 KeyFinder is a browser extension for Chrome and Firefox that passively scans every page you visit for leaked API keys, tokens, secrets, and credentials. It runs silently in the background with zero configuration required.
 
 <p align="center">
-  <img alt="KeyFinder findings console — severity-sorted findings with filters, latest-finding ticker, and one-click export" src="https://raw.githubusercontent.com/momenbasel/keyFinder/master/store/store-1-dashboard.png">
+  <video src="https://cdn.jsdelivr.net/gh/momenbasel/keyFinder@master/store/store-demo.mp4" poster="https://raw.githubusercontent.com/momenbasel/keyFinder/master/store/store-1-dashboard.png" controls muted playsinline></video>
 </p>
 
 ## What It Detects
