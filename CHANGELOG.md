@@ -2,6 +2,19 @@
 
 All notable changes to KeyFinder are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning follows [SemVer](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.0] - 2026-07-18
+
+### Added
+- Ops-console UI redesign of the popup and findings dashboard: radar-sweep brand mark, ARMED/PASSIVE status LEDs, scanline texture, monospace UI chrome, and a semantic color system (amber = actions, teal = recovered secrets, red/orange/yellow/teal severity scale)
+- Popup: count-up stat numerals, numbered watchlist entries, command-prompt keyword input with glowing focus ring, and a terminal status line typed with the live keyword/finding counts
+- Dashboard: clickable severity stat tiles that filter the table, LATEST ticker for the most recent finding, `findings.log` table shell with severity-coded row edges, LED severity badges, click-to-copy match chips, relative timestamps (absolute on hover), skeleton loading rows, staggered first-paint rows, and an animated radar empty state that distinguishes "no findings yet" from "filters hide everything"
+- Keyboard shortcuts on the dashboard: `/` focuses search, `Esc` clears and blurs it
+- `prefers-reduced-motion` support across all animations
+
+### Fixed
+- Severity sort treated `critical` as lowest priority (`severityOrder[s] || 5` maps `critical: 0` to the fallback), so critical findings rendered last; they now lead the table
+- Latest-finding ticker no longer stays visible when storage is empty (`display: flex` was overriding the `hidden` attribute)
+
 ## [2.1.1] - 2026-05-14
 
 ### Added

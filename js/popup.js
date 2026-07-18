@@ -1,11 +1,54 @@
 document.addEventListener("DOMContentLoaded", init);
 
+const REDUCE_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+let lastKeywords = 0;
+let lastFindings = 0;
+let termBooted = false;
+
 async function init() {
   const versionLabel = document.getElementById("versionLabel");
   if (versionLabel) versionLabel.textContent = "v" + chrome.runtime.getManifest().version;
   await renderKeywords();
   await renderStats();
+  updateTermLine(true);
+  termBooted = true;
   document.getElementById("keywordForm").addEventListener("submit", handleAddKeyword);
+}
+
+/* eased count-up for stat numerals */
+function setNumber(el, target) {
+  if (!el) return;
+  const from = parseInt(el.textContent, 10);
+  const start = Number.isFinite(from) ? from : 0;
+  if (REDUCE_MOTION || start === target) {
+    el.textContent = target;
+    return;
+  }
+  const duration = 380;
+  const t0 = performance.now();
+  (function tick(t) {
+    const p = Math.min(1, (t - t0) / duration);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(start + (target - start) * eased);
+    if (p < 1) requestAnimationFrame(tick);
+  })(t0);
+}
+
+/* terminal status line — types once per popup open, instant after */
+function updateTermLine(typed) {
+  const el = document.getElementById("termText");
+  if (!el) return;
+  const text = `kf> scan armed :: ${lastKeywords} keywords :: ${lastFindings} findings`;
+  if (!typed || REDUCE_MOTION) {
+    el.textContent = text;
+    return;
+  }
+  let i = 0;
+  (function type() {
+    el.textContent = text.slice(0, ++i);
+    if (i < text.length) setTimeout(type, 14);
+  })();
 }
 
 async function renderKeywords() {
@@ -14,10 +57,15 @@ async function renderKeywords() {
   const list = document.getElementById("keywordList");
   list.innerHTML = "";
 
-  document.getElementById("keywordCount").textContent = keywords.length;
+  lastKeywords = keywords.length;
+  setNumber(document.getElementById("keywordCount"), keywords.length);
+  if (termBooted) updateTermLine(false);
 
   if (keywords.length === 0) {
-    list.innerHTML = '<li class="empty-state">No keywords configured</li>';
+    const empty = document.createElement("li");
+    empty.className = "empty-state";
+    empty.textContent = "no keywords configured";
+    list.appendChild(empty);
     return;
   }
 
@@ -31,7 +79,7 @@ async function renderKeywords() {
 
     const removeBtn = document.createElement("button");
     removeBtn.className = "keyword-remove";
-    removeBtn.textContent = "\u00D7";
+    removeBtn.textContent = "×";
     removeBtn.title = `Remove "${kw}"`;
     removeBtn.addEventListener("click", () => handleRemoveKeyword(kw));
 
@@ -44,7 +92,9 @@ async function renderKeywords() {
 async function renderStats() {
   const response = await chrome.runtime.sendMessage({ type: "getFindings" });
   const findings = response.findings || [];
-  document.getElementById("findingCount").textContent = findings.length;
+  lastFindings = findings.length;
+  setNumber(document.getElementById("findingCount"), findings.length);
+  if (termBooted) updateTermLine(false);
 }
 
 async function handleAddKeyword(e) {
@@ -68,6 +118,7 @@ async function handleAddKeyword(e) {
   }
 
   input.value = "";
+  input.focus();
   await renderKeywords();
 }
 
