@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>KeyFinder — social preview</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1280px;
+      height: 640px;
+      background: #05070c;
+      font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      color: #d6dde8;
+      display: flex;
+      flex-direction: column;
+    }
+    .stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 64px;
+      padding: 0 72px;
+    }
+
+    /* left — brand copy */
+    .copy { flex: none; width: 470px; }
+    .brand { display: flex; align-items: center; gap: 16px; }
+    .brand img { width: 64px; height: 64px; }
+    h1 {
+      color: #fff;
+      font-size: 44px;
+      font-weight: 700;
+      letter-spacing: .18em;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      color: #3ddc97;
+      border: 1px solid rgba(61,220,151,.4);
+      padding: 5px 9px;
+      margin-left: 6px;
+    }
+    .badge::before {
+      content: "";
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #3ddc97;
+    }
+    .tag {
+      margin-top: 18px;
+      color: #f5a524;
+      font-size: 15px;
+      letter-spacing: .2em;
+    }
+    .desc {
+      margin-top: 14px;
+      color: #8b96a8;
+      font-size: 13px;
+      line-height: 1.75;
+    }
+    .spec {
+      margin-top: 26px;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .spec li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11.5px;
+      letter-spacing: .1em;
+      color: #525d70;
+      text-transform: uppercase;
+    }
+    .spec li::before { content: "▸"; color: #45d0c4; font-size: 10px; }
+    .spec li b { color: #d6dde8; font-weight: 600; }
+
+    /* right — console frame */
+    .frame {
+      flex: 1;
+      height: 460px;
+      border: 1px solid #2a3650;
+      background: #090d14 url("film/dash.png") no-repeat;
+      background-size: 1400px 875px;
+      background-position: -16px -14px;
+      position: relative;
+    }
+    .frame::before {
+      content: "● FINDINGS.LOG";
+      position: absolute;
+      top: -8px; left: 12px;
+      background: #05070c;
+      padding: 0 7px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      color: #8b96a8;
+    }
+    .frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 78%, rgba(5,7,12,.92) 100%);
+    }
+
+    /* bottom strip */
+    .strip {
+      border-top: 1px solid #1a2233;
+      padding: 12px 72px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      letter-spacing: .16em;
+      color: #525d70;
+      text-transform: uppercase;
+    }
+    .strip .url { color: #45d0c4; }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="copy">
+      <div class="brand">
+        <img src="../icons/icon128.png" alt="">
+        <h1>KEYFINDER</h1>
+        <span class="badge">v2.2.1</span>
+      </div>
+      <div class="tag">// PASSIVE SECRET DISCOVERY</div>
+      <p class="desc">Browser extension that passively scans every page you visit for leaked API keys, tokens and credentials — across scripts, DOM, storage and network responses.</p>
+      <ul class="spec">
+        <li><b>80+</b> detection patterns · entropy analysis</li>
+        <li><b>10</b> attack surfaces · SPA-aware rescanning</li>
+        <li><b>local-only</b> storage · zero config · no egress</li>
+      </ul>
+    </div>
+    <div class="frame"></div>
+  </div>
+  <div class="strip">
+    <span>chrome · firefox · manifest v3</span>
+    <span class="url">github.com/momenbasel/keyFinder</span>
+  </div>
+</body>
+</html>
