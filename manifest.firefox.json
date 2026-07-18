@@ -1,7 +1,7 @@
 {
   "name": "KeyFinder",
   "description": "Passively discovers API keys, tokens, and secrets leaked in page scripts, DOM, network responses, and browser storage. Available for Chrome and Firefox.",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "manifest_version": 3,
   "browser_specific_settings": {
     "gecko": {

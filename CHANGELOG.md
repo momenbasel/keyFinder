@@ -2,6 +2,12 @@
 
 All notable changes to KeyFinder are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versioning follows [SemVer](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.1] - 2026-07-18
+
+### Changed
+- Anti-slop UI refinement: removed scanline/vignette overlays, colored glows, gradient washes, and card grids in favor of flat value-step surfaces, segmented stat strips with hairline dividers, sharp corners, reverse-video active states and hover emphasis, and a titled-border (`findings.log`) table shell — stricter terminal discipline throughout
+- Store listing screenshots regenerated from the flattened UI
+
 ## [2.2.0] - 2026-07-18
 
 ### Added

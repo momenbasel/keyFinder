@@ -29,7 +29,7 @@
 
   window.chrome = {
     runtime: {
-      getManifest: () => ({ version: "2.2.0" }),
+      getManifest: () => ({ version: "2.2.1" }),
       sendMessage: async (msg) => {
         switch (msg && msg.type) {
           case "getFindings": return { findings: [] };

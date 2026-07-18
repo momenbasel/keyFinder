@@ -19,14 +19,13 @@ body.store {
   padding: 0 64px;
 }
 
-/* ambient brand glows */
+/* ambient depth: a single flat value step, no glow washes */
 .stage::before {
   content: "";
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(560px 420px at 12% 18%, rgba(245,165,36,.09) 0%, transparent 60%),
-    radial-gradient(620px 480px at 88% 82%, rgba(69,208,196,.07) 0%, transparent 60%);
+    radial-gradient(700px 500px at 85% 80%, rgba(69,208,196,.045) 0%, transparent 65%);
   pointer-events: none;
 }
 
@@ -103,12 +102,8 @@ body.store {
   flex: none;
   width: 372px;
   border: 1px solid var(--line-strong);
-  border-radius: 8px;
   overflow: hidden;
-  box-shadow:
-    0 0 0 1px rgba(245,165,36,.08),
-    0 24px 80px rgba(0,0,0,.65),
-    0 0 120px rgba(245,165,36,.05);
+  box-shadow: 0 24px 80px rgba(0,0,0,.6);
 }
 .popup-frame::before {
   content: "";
