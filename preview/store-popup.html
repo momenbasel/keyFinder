@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>KeyFinder — store shot (popup)</title>
+  <link rel="stylesheet" href="../css/popup.css">
+  <link rel="stylesheet" href="store.css">
+</head>
+<body class="store">
+  <div class="stage">
+    <div class="copy">
+      <div class="kicker">KEYFINDER v2.2.0 — PASSIVE SCANNER</div>
+      <h1>Catch leaked keys<br>while you <em>browse</em>.</h1>
+      <p>KeyFinder passively scans every page for exposed API keys, tokens and credentials — across scripts, DOM, storage and network responses.</p>
+      <ul class="spec">
+        <li>80+ detection patterns · entropy analysis</li>
+        <li>10 attack surfaces · SPA-aware rescanning</li>
+        <li>local-only storage · zero config</li>
+      </ul>
+    </div>
+    <div class="popup-frame">
+
+  <header class="header">
+    <div class="header-brand">
+      <span class="radar" aria-hidden="true">
+        <img src="../icons/icon48.png" alt="" class="header-icon">
+      </span>
+      <div class="brand-text">
+        <h1>KEYFINDER<span class="version" id="versionLabel"></span></h1>
+        <p class="header-tagline">passive secret discovery</p>
+      </div>
+      <span class="live-badge" title="Passive scanning is active"><span class="live-dot"></span>ARMED</span>
+    </div>
+  </header>
+
+  <section class="stats" id="stats">
+    <div class="stat-card stat-findings">
+      <span class="stat-top"><span class="stat-led" aria-hidden="true"></span><span class="stat-label">Findings</span></span>
+      <span class="stat-number" id="findingCount">&ndash;</span>
+    </div>
+    <div class="stat-card stat-keywords">
+      <span class="stat-top"><span class="stat-led" aria-hidden="true"></span><span class="stat-label">Keywords</span></span>
+      <span class="stat-number" id="keywordCount">&ndash;</span>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Watchlist<span class="section-sub">// custom keywords</span></h2>
+    <form id="keywordForm" class="keyword-form">
+      <span class="prompt" aria-hidden="true">&#8250;</span>
+      <input
+        type="text"
+        id="keywordInput"
+        placeholder="add keyword, e.g. api_key"
+        autocomplete="off"
+        spellcheck="false"
+      >
+      <button type="submit" id="addBtn">Add</button>
+    </form>
+    <div id="errorMsg" class="error-msg" hidden></div>
+    <ul id="keywordList" class="keyword-list"></ul>
+  </section>
+
+  <footer class="footer">
+    <div class="term-line" aria-live="polite"><span class="term-text" id="termText"></span><span class="term-cursor" aria-hidden="true"></span></div>
+    <a href="../results.html" target="_blank" id="resultsLink" class="results-btn">
+      View Findings <span class="btn-arrow" aria-hidden="true">&rarr;</span>
+    </a>
+  </footer>
+
+  
+
+    </div>
+  </div>
+  <script src="preview-stub.js"></script>
+  <script src="../js/popup.js"></script>
+</body>
+</html>

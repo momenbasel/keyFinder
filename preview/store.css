@@ -1,0 +1,120 @@
+/* Store-listing composition backdrop (preview only, not shipped) */
+
+body.store {
+  width: auto;
+  min-width: 0;
+  background: #04060a;
+  overflow: hidden;
+}
+
+.stage {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 72px;
+  width: 1280px;
+  height: 800px;
+  padding: 0 64px;
+}
+
+/* ambient brand glows */
+.stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(560px 420px at 12% 18%, rgba(245,165,36,.09) 0%, transparent 60%),
+    radial-gradient(620px 480px at 88% 82%, rgba(69,208,196,.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.copy { max-width: 560px; }
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  color: var(--green);
+  border: 1px solid rgba(61,220,151,.32);
+  background: rgba(61,220,151,.06);
+  padding: 5px 9px;
+  border-radius: 2px;
+  margin-bottom: 26px;
+}
+.kicker::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+}
+
+.copy h1 {
+  font-size: 46px;
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: .01em;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.copy h1 em {
+  font-style: normal;
+  color: var(--amber);
+}
+
+.copy p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-dim);
+  margin-bottom: 26px;
+  max-width: 440px;
+}
+
+.spec {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.spec li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: .08em;
+  color: var(--text-faint);
+  text-transform: uppercase;
+}
+.spec li::before {
+  content: "▸";
+  color: var(--teal);
+  font-size: 10px;
+}
+
+/* floating popup frame */
+.popup-frame {
+  position: relative;
+  flex: none;
+  width: 372px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(245,165,36,.08),
+    0 24px 80px rgba(0,0,0,.65),
+    0 0 120px rgba(245,165,36,.05);
+}
+.popup-frame::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(245,165,36,.6), transparent);
+  z-index: 2;
+}

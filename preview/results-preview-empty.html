@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KeyFinder — Findings Console</title>
+  <link rel="stylesheet" href="../css/results.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-row">
+      <div class="header-left">
+        <span class="radar" aria-hidden="true">
+          <img src="../icons/icon48.png" alt="" class="header-icon">
+        </span>
+        <div class="brand-text">
+          <h1>KEYFINDER<span class="version" id="versionLabel"></span></h1>
+          <p class="header-sub">findings console</p>
+        </div>
+        <span class="live-badge" title="Passive scanning is active"><span class="live-dot"></span>PASSIVE</span>
+      </div>
+      <div class="header-actions">
+        <div class="search-wrap">
+          <span class="search-glyph" aria-hidden="true">&#9906;</span>
+          <input type="text" id="searchBox" placeholder="search findings…" autocomplete="off" spellcheck="false">
+          <kbd class="kbd" title="Press / to focus search">/</kbd>
+        </div>
+        <div class="btn-group">
+          <button id="exportJsonBtn" class="btn btn-secondary" title="Download filtered findings as JSON">&darr; JSON</button>
+          <button id="exportCsvBtn" class="btn btn-secondary" title="Download filtered findings as CSV">&darr; CSV</button>
+          <button id="clearBtn" class="btn btn-danger" title="Remove all findings">&times; Clear</button>
+        </div>
+      </div>
+    </div>
+    <div class="header-row header-row-filters">
+      <div class="filter-group">
+        <label class="filter">
+          <span class="filter-label">sev</span>
+          <select id="severityFilter">
+            <option value="all">all</option>
+            <option value="critical">critical</option>
+            <option value="high">high</option>
+            <option value="medium">medium</option>
+            <option value="low">low</option>
+          </select>
+        </label>
+        <label class="filter">
+          <span class="filter-label">type</span>
+          <select id="typeFilter">
+            <option value="all">all</option>
+          </select>
+        </label>
+        <label class="filter">
+          <span class="filter-label">provider</span>
+          <select id="providerFilter">
+            <option value="all">all</option>
+          </select>
+        </label>
+      </div>
+      <div class="meta-line" id="metaLine"></div>
+    </div>
+  </header>
+
+  <div class="stats-bar" id="statsBar"></div>
+
+  <div class="ticker" id="ticker" hidden>
+    <span class="ticker-dot" aria-hidden="true"></span>
+    <span class="ticker-label">LATEST</span>
+    <span class="ticker-text" id="tickerText"></span>
+  </div>
+
+  <main class="main">
+    <div class="table-shell">
+      <div class="shell-head">
+        <span class="shell-title">findings.log</span>
+        <span class="shell-meta" id="shellMeta"></span>
+      </div>
+      <table class="findings-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Severity</th>
+            <th>Provider</th>
+            <th>Pattern</th>
+            <th>Match</th>
+            <th>Type</th>
+            <th>Domain</th>
+            <th>Source</th>
+            <th>Time</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="findingsBody"></tbody>
+      </table>
+      <div id="emptyState" class="empty-state" hidden>
+        <svg class="empty-radar" viewBox="0 0 72 72" aria-hidden="true">
+          <circle cx="36" cy="36" r="30" class="er-ring"/>
+          <circle cx="36" cy="36" r="20" class="er-ring"/>
+          <circle cx="36" cy="36" r="10" class="er-ring"/>
+          <line x1="36" y1="6" x2="36" y2="66" class="er-cross"/>
+          <line x1="6" y1="36" x2="66" y2="36" class="er-cross"/>
+          <path d="M36 36 L36 6 A30 30 0 0 1 57.2 14.8 Z" class="er-sweep"/>
+          <circle cx="36" cy="36" r="2.5" class="er-core"/>
+        </svg>
+        <p class="empty-title" id="emptyTitle">No findings yet</p>
+        <p class="empty-copy" id="emptyCopy">KeyFinder passively scans every page you visit. Browse around — leaked keys, tokens and credentials will surface here.</p>
+        <p class="empty-hint">tip · add custom keywords from the extension popup</p>
+      </div>
+    </div>
+    <footer class="page-footer">
+      <span>local storage only</span>
+      <span class="footer-sep">·</span>
+      <span>5000-finding ring buffer</span>
+      <span class="footer-sep">·</span>
+      <span>no network egress</span>
+    </footer>
+  </main>
+
+  <script src="preview-stub-empty.js"></script>
+  <script src="../js/results.js"></script>
+</body>
+</html>

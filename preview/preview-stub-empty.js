@@ -32,7 +32,7 @@
       getManifest: () => ({ version: "2.2.0" }),
       sendMessage: async (msg) => {
         switch (msg && msg.type) {
-          case "getFindings": return { findings: SAMPLE_FINDINGS.slice() };
+          case "getFindings": return { findings: [] };
           case "getKeywords": return { keywords: SAMPLE_KEYWORDS.slice() };
           case "addKeyword": return { ok: true };
           case "removeKeyword": return { ok: true };
