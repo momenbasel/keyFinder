@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>KeyFinder — banner</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1280px;
+      height: 640px;
+      background: #05070c;
+      font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      color: #d6dde8;
+      display: grid;
+      place-items: center;
+    }
+    .lockup { text-align: center; }
+
+    /* radar ring around the key */
+    .radar {
+      position: relative;
+      width: 108px;
+      height: 108px;
+      margin: 0 auto;
+      border-radius: 50%;
+      border: 1px solid #2a3650;
+      background: #090d14;
+      display: grid;
+      place-items: center;
+    }
+    .radar::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #f5a524 0deg, rgba(245,165,36,.15) 60deg, transparent 95deg);
+      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2.5px), #000 calc(100% - 1.5px));
+              mask: radial-gradient(farthest-side, transparent calc(100% - 2.5px), #000 calc(100% - 1.5px));
+    }
+    .radar::after {
+      content: "";
+      position: absolute;
+      top: 22px; left: 26px;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: #45d0c4;
+    }
+    .radar img { width: 58px; height: 58px; }
+
+    h1 {
+      margin-top: 26px;
+      color: #fff;
+      font-size: 62px;
+      font-weight: 700;
+      letter-spacing: .22em;
+      padding-left: .22em;
+    }
+    .ver {
+      display: inline-block;
+      vertical-align: 14px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .08em;
+      color: #525d70;
+      border: 1px solid #1a2233;
+      padding: 3px 7px;
+      margin-left: 10px;
+    }
+    .tag {
+      margin-top: 16px;
+      color: #f5a524;
+      font-size: 15px;
+      letter-spacing: .26em;
+    }
+
+    .chips {
+      margin-top: 34px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    .chip {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 7px 14px;
+      border: 1px solid #2a3650;
+      color: #8b96a8;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .chip i {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: currentColor;
+      font-style: normal;
+    }
+    .chip-amber { color: #f5a524; border-color: rgba(245,165,36,.45); }
+    .chip-teal  { color: #45d0c4; border-color: rgba(69,208,196,.45); }
+
+    .providers {
+      margin-top: 30px;
+      font-size: 11px;
+      letter-spacing: .14em;
+      color: #525d70;
+      text-transform: uppercase;
+    }
+    .providers b { color: #f5a524; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="lockup">
+    <div class="radar"><img src="../icons/icon128.png" alt=""></div>
+    <h1>KEYFINDER<span class="ver">[v2.2.1]</span></h1>
+    <div class="tag">// PASSIVE API KEY &amp; SECRET DISCOVERY</div>
+    <div class="chips">
+      <span class="chip chip-amber"><i></i>Chrome extension</span>
+      <span class="chip chip-teal"><i></i>Firefox add-on</span>
+      <span class="chip"><i></i>Manifest V3</span>
+      <span class="chip"><i></i>80+ patterns</span>
+    </div>
+    <div class="providers"><b>AWS</b> · GCP · Azure · Stripe · GitHub · Slack · OpenAI · and 70+ more</div>
+  </div>
+</body>
+</html>
