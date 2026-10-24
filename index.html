@@ -8,14 +8,14 @@
   <meta name="keywords" content="browser extension secret scanner, api key finder, leaked credentials detector, secret detection, api keys, api security, chrome extension, firefox addon, bug bounty, pentesting, infosec, javascript, manifest v3, osint, reconnaissance, secrets, aws keys, cybersecurity, hacking, leaked credentials, secret scanner, security tool">
   <meta name="author" content="Moamen Basel">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://momenbasel.github.io/keyFinder/">
+  <link rel="canonical" href="https://www.moamenbasel.com/keyFinder/">
 
   <!-- Open Graph -->
   <meta property="og:title" content="keyFinder - Passively Find Leaked Secrets in Your Browser">
   <meta property="og:description" content="Browser extension for Chrome and Firefox that scans every page for leaked API keys, tokens, and credentials. 80+ patterns. 10 attack surfaces. Zero config.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://momenbasel.github.io/keyFinder/">
-  <meta property="og:image" content="https://raw.githubusercontent.com/momenbasel/keyFinder/master/icons/social-preview.png">
+  <meta property="og:url" content="https://www.moamenbasel.com/keyFinder/">
+  <meta property="og:image" content="https://www.moamenbasel.com/keyFinder/assets/dashboard.png">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
@@ -23,10 +23,10 @@
   <meta name="twitter:creator" content="@momenbassel">
   <meta name="twitter:title" content="keyFinder - Passively Find Leaked Secrets in Your Browser">
   <meta name="twitter:description" content="Browser extension for Chrome and Firefox scanning every page for leaked API keys, tokens, and credentials. 80+ patterns. 10 attack surfaces. Zero config.">
-  <meta name="twitter:image" content="https://raw.githubusercontent.com/momenbasel/keyFinder/master/icons/social-preview.png">
+  <meta name="twitter:image" content="https://www.moamenbasel.com/keyFinder/assets/dashboard.png">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/momenbasel/keyFinder/master/icons/icon128.png">
+  <link rel="icon" type="image/png" href="assets/icon.png">
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -38,7 +38,7 @@
     "operatingSystem": "Chrome, Firefox, Chromium",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
     "description": "Browser extension for Chrome and Firefox that passively finds leaked API keys, tokens, and secrets on every page you visit. 80+ detection patterns across 10 attack surfaces with zero configuration.",
-    "url": "https://momenbasel.github.io/keyFinder/",
+    "url": "https://www.moamenbasel.com/keyFinder/",
     "downloadUrl": "https://github.com/momenbasel/keyFinder/releases",
     "author": { "@type": "Person", "name": "Moamen Basel", "url": "https://github.com/momenbasel" },
     "license": "https://opensource.org/licenses/MIT",
@@ -524,17 +524,21 @@
     .animate.d3 { animation-delay: 0.3s; }
     .animate.d4 { animation-delay: 0.4s; }
   </style>
+  <link rel="stylesheet" href="refresh.css">
+  <noscript><style>nav{position:static}.nav-inner{height:auto;min-height:64px;flex-wrap:wrap;padding-block:12px;gap:16px}.menu-toggle{display:none}.nav-links{display:flex;position:static;flex-wrap:wrap;padding:0;background:none;border:0}.nav-links a:not(.btn-sm){display:block}</style></noscript>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- NAV -->
-  <nav>
+  <nav aria-label="Main navigation">
     <div class="nav-inner">
       <a href="#" class="nav-logo">
-        <img src="https://raw.githubusercontent.com/momenbasel/keyFinder/master/icons/icon128.png" alt="keyFinder">
+        <img src="assets/icon.png" alt="keyFinder">
         keyFinder
       </a>
-      <div class="nav-links">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">Menu</button>
+      <div class="nav-links" id="site-navigation">
         <a href="#features">Features</a>
         <a href="#detection">Detection</a>
         <a href="#surfaces">Surfaces</a>
@@ -544,85 +548,28 @@
     </div>
   </nav>
 
-  <!-- HERO -->
+  <main id="main" tabindex="-1">
   <section class="hero">
     <div class="hero-content">
-      <div class="hero-badge animate">
-        <span>558+ stars</span> Trusted by security researchers
-      </div>
-      <h1 class="animate d1">
-        Find leaked secrets,<br>
-        <span class="gradient">passively.</span>
-      </h1>
-      <p class="animate d2">
-        A browser extension for Chrome and Firefox that scans every page you visit for API keys, tokens, and credentials.
-        80+ patterns. 10 attack surfaces. Zero config.
-      </p>
-      <div class="hero-actions animate d3">
-        <a href="https://chromewebstore.google.com/detail/keyfinder/oogbljkilkfgdlkbmajlolpanilnnkim" class="btn btn-primary">
-          <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="8" r="3"/></svg>
-          Chrome Web Store
-        </a>
-        <a href="https://addons.mozilla.org/en-US/firefox/addon/keyfinder-original/" class="btn btn-primary" style="background: #ff7139; color: #fff;">
-          <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M14.4 4.8c-.5-1.2-1.5-2.2-2.7-2.9.3.6.5 1.2.5 1.9 0 1.5-.9 2.8-2.2 3.4.1-.4.2-.9.2-1.4 0-2-1.3-3.6-3.1-4.2.3.5.5 1.1.5 1.8 0 1.9-1.3 3.4-3 3.8C3 7.7 2 9.3 2 11.1 2 13.8 4.7 16 8 16s6-2.2 6-5c0-2.3-1-4.3-1.6-5.2-.5.5-1.1.9-1.8 1.1.9-.7 1.5-1.7 1.8-2.1z"/></svg>
-          Firefox Add-ons
-        </a>
-        <a href="https://github.com/momenbasel/keyFinder" class="btn btn-secondary">
-          <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-          View Source
-        </a>
-      </div>
-
-      <!-- 10 Attack Surfaces Visual -->
-      <div class="surfaces-visual animate d4">
-        <div class="surface-chip">
-          <span class="s-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
-          <span class="s-label">Script URLs</span>
-        </div>
-        <div class="surface-chip">
-          <span class="s-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
-          <span class="s-label">Inline Scripts</span>
-        </div>
-        <div class="surface-chip">
-          <span class="s-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 2H3v16h5v4l4-4h5l4-4V2z"/></svg></span>
-          <span class="s-label">External JS</span>
-        </div>
-        <div class="surface-chip">
-          <span class="s-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg></span>
-          <span class="s-label">Meta Tags</span>
-        </div>
-        <div class="surface-chip">
-          <span class="s-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></span>
-          <span class="s-label">Hidden Fields</span>
-        </div>
-        <div class="surface-chip">
-          <span class="s-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>
-          <span class="s-label">Data Attrs</span>
-        </div>
-        <div class="surface-chip">
-          <span class="s-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></span>
-          <span class="s-label">Comments</span>
-        </div>
-        <div class="surface-chip">
-          <span class="s-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></span>
-          <span class="s-label">URL Params</span>
-        </div>
-        <div class="surface-chip">
-          <span class="s-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>
-          <span class="s-label">Web Storage</span>
-        </div>
-        <div class="surface-chip">
-          <span class="s-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
-          <span class="s-label">Network</span>
-        </div>
+      <p class="hero-kicker">Open-source browser extension</p>
+      <h1>Find exposed<br><span class="gradient">secrets.</span></h1>
+      <p>Discover API keys and tokens while you browse. Review findings locally in Chrome or Firefox.</p>
+      <div class="hero-actions">
+        <a href="https://chromewebstore.google.com/detail/keyfinder/oogbljkilkfgdlkbmajlolpanilnnkim" class="btn btn-primary">Install for Chrome</a>
+        <a href="https://addons.mozilla.org/en-US/firefox/addon/keyfinder-original/" class="btn btn-secondary">Install for Firefox</a>
       </div>
     </div>
+    <figure class="hero-preview">
+      <a href="assets/dashboard.png" aria-label="View full KeyFinder dashboard screenshot"><img src="assets/dashboard.png" width="1280" height="800" alt="KeyFinder findings dashboard with severity filters, search, and export controls" fetchpriority="high"></a>
+      <figcaption>Filter, inspect, and export findings from one local dashboard.</figcaption>
+    </figure>
   </section>
+  <div class="product-facts" aria-label="Product details"><span>80+ detection patterns</span><span>Chrome + Firefox</span><span>MIT licensed</span><a href="https://github.com/momenbasel/keyFinder/releases/latest">Release notes</a></div>
 
   <!-- FEATURES -->
   <section id="features">
     <div class="section-label">Features</div>
-    <h2 class="section-title">Powerful detection, zero friction</h2>
+    <h2 class="section-title">From discovery to triage</h2>
     <p class="section-desc">Install once. Every page you visit is automatically scanned for leaked secrets across all attack surfaces.</p>
     <div class="features-grid">
       <div class="feature-card">
@@ -679,8 +626,8 @@
         <div class="stat-label">Attack Surfaces</div>
       </div>
       <div class="stat">
-        <div class="stat-val">558+</div>
-        <div class="stat-label">GitHub Stars</div>
+        <div class="stat-val">Local</div>
+        <div class="stat-label">Findings Storage</div>
       </div>
       <div class="stat">
         <div class="stat-val">0</div>
@@ -693,7 +640,7 @@
   <section id="detection">
     <div class="section-label">Detection Coverage</div>
     <h2 class="section-title">Secrets across every category</h2>
-    <p class="section-desc">From cloud provider keys to cryptocurrency wallet seeds, keyFinder recognizes credentials across the entire modern stack.</p>
+    <p class="section-desc">Recognize patterns for cloud credentials, developer tokens, payment keys, and private keys. Inspect each match in context.</p>
     <div class="detection-grid">
       <div class="detection-card">
         <h4><span class="d-dot" style="background: var(--accent)"></span>Cloud</h4>
@@ -874,8 +821,8 @@
   <!-- INSTALLATION -->
   <section id="install">
     <div class="section-label">Installation</div>
-    <h2 class="section-title">Up and running in under a minute</h2>
-    <p class="section-desc">Two ways to install. Both take less than 60 seconds. No build tools required.</p>
+    <h2 class="section-title">Add KeyFinder to your browser</h2>
+    <p class="section-desc">Choose your browser below. No build tools or account required.</p>
     <div class="install-grid">
       <div class="install-card">
         <div class="install-header">
@@ -900,7 +847,7 @@
       <div class="install-card">
         <div class="install-header">
           Firefox
-          <span class="tag">New</span>
+          <span class="tag">Firefox 128+</span>
         </div>
         <div class="install-body">
           <div class="install-step">
@@ -920,6 +867,12 @@
     </div>
   </section>
 
+  <section class="privacy-note" aria-labelledby="privacy-title">
+    <h2 id="privacy-title">Your findings stay in your browser.</h2>
+    <p>Scan results and keywords are stored locally. Inspect a match before treating it as a live credential: pattern matches can be false positives.</p>
+    <a href="https://github.com/momenbasel/keyFinder/blob/master/PRIVACY.md">Read the privacy policy</a>
+  </section>
+
   <!-- CTA -->
   <section class="cta">
     <h2>Start finding leaked secrets today</h2>
@@ -928,12 +881,13 @@
       <a href="https://chromewebstore.google.com/detail/keyfinder/oogbljkilkfgdlkbmajlolpanilnnkim" class="btn btn-primary">
         Install for Chrome
       </a>
-      <a href="https://addons.mozilla.org/en-US/firefox/addon/keyfinder-original/" class="btn btn-primary" style="background: #ff7139; color: #fff;">
+      <a href="https://addons.mozilla.org/en-US/firefox/addon/keyfinder-original/" class="btn btn-secondary">
         Install for Firefox
       </a>
     </div>
   </section>
 
+  </main>
   <!-- FOOTER -->
   <footer>
     <div class="footer-links">
@@ -947,29 +901,6 @@
     <p>Built by <a href="https://github.com/momenbasel">Moamen Basel</a></p>
   </footer>
 
-  <!-- Intersection Observer for animations -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('animate');
-            observer.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.1 });
-
-      document.querySelectorAll('.feature-card, .detection-card, .surface-item, .install-card, .surface-chip').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        observer.observe(el);
-      });
-
-      const style = document.createElement('style');
-      style.textContent = `.feature-card.animate, .detection-card.animate, .surface-item.animate, .install-card.animate, .surface-chip.animate { opacity: 1 !important; transform: translateY(0) !important; }`;
-      document.head.appendChild(style);
-    });
-  </script>
+  <script src="site.js" defer></script>
 </body>
 </html>
